@@ -1,0 +1,36 @@
+
+
+<MenuPrincipal>:
+    size_hint:
+    opacity: 1
+    canvas.before:
+        Color :
+            rgba: 0,.5,1,.8
+        Rectangle:
+            size: self.size
+    BoxLayout:
+        size_hint: 1,0.8
+        pos_hint: {"center_x":0.5 ,"center_y": 0.55}
+        orientation : "vertical"
+        Label:
+            text: "Training Math"
+            font_size: "80dp"
+
+
+        BoxLayout:
+            pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+            size_hint: 0.5,0.5
+            orientation : "vertical"
+            Button:
+                text : "Facile"
+                on_press : root.parent.on_press_facile()
+                font_size: "35dp"
+
+            Button:
+                text : "Moyen"
+                font_size: "35dp"
+                on_press : root.parent.on_press_moyen()
+            Button:
+                text : "Difficile"
+                font_size: "35dp"
+                on_press : root.parent.on_press_difficile()

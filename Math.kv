@@ -1,0 +1,70 @@
+#:import menu menu
+#:import reponse reponse
+#:import nom_score nom_score
+
+MainWidget:
+
+<MainWidget>:
+
+    canvas.before:
+        Rectangle:
+            size: self.size
+            source: "images\Fond.jpg"
+
+
+    menu_principal : menu_principal
+    reponse_view: reponse_view
+    nom_score_view : nom_score_view
+    BoxLayout:
+        size_hint: 0.7,.5
+        pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+        orientation : "vertical"
+        BoxLayout :
+            orientation :"vertical"
+            Label:
+                id: nb_question
+                text:  "Question " + str(root.nb_question) +"/" + str(root.NOMBRE_QUESTION)
+                color : 0,0,0,1
+                size_hint : 0.2,0.2
+                canvas.before:
+                    Color:
+                        rgb: 1,1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+
+            Label:
+                id : questions
+                text : root.question
+                font_size: "30dp"
+                color : 0,0,0,1
+                canvas.before:
+                    Color:
+                        rgba: 1,1,1,0.7
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        BoxLayout:
+            size_hint: 1,.2
+            TextInput:
+                id: my_text_input
+                multiline: False
+                text: ""
+                on_text_validate: root.on_text_validate(self)
+                on_touch_down: if self.collide_point(*args[1].pos): self.text = ""
+
+            Button:
+                id: button_validate
+                text: "Valider"
+                on_press: root.on_press_validate()
+                disabled : not root.text_imput_state_validate
+
+
+    ReponseView:
+        id: reponse_view
+    MenuPrincipal:
+        id: menu_principal
+    NomScoreView:
+        id : nom_score_view
+

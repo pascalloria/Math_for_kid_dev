@@ -1,0 +1,90 @@
+<NomScoreView>:
+    opacity: 0
+    canvas.before:
+        Color :
+            rgba: 0,0,0,1
+        Rectangle:
+            size: self.size
+
+    orientation : "vertical"
+    spacing : "5dp"
+    BoxLayout:
+        spacing : "5dp"
+        size_hint : 0.5,0.07
+        pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+        Label:
+            canvas.before:
+                Color:
+                    rgb: .2,.2,.2
+                Rectangle:
+                    size: self.size
+                    pos : self.pos
+            text: "Votre nom"
+            font_size: "20dp"
+        TextInput:
+            id: my_text_input
+            multiline: False
+            text: "toto"
+            on_text_validate: root.parent.on_name_validate(self)
+    Label:
+        size_hint : 0.5,0.05
+        pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgb: .2,.2,.2
+            Rectangle:
+                size: self.size
+                pos : self.pos
+        text: root.parent.score_afficher
+        font_size: "20dp"
+        padding : "2dp" ,"2dp"
+
+    BoxLayout:
+        size_hint : 0.7,1
+        pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+        canvas.before:
+            Color:
+                rgb: .4,.4,.4
+            Rectangle:
+                size: self.size
+                pos : self.pos
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 10, 10
+                orientation : "horizontal"
+
+                Label:
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                    text: "Nom\n \n" +  root.parent.tables_names_join
+                    font_size: "20dp"
+                Label:
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Difficulté\n \n" + root.parent.tables_difficulte_join
+                    font_size: "20dp"
+                Label:
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Score\n \n" + root.parent.tables_score_join
+                    font_size: "20dp"
+                Label:
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text: "Temps\n \n" + root.parent.tables_temps_join
+                    font_size: "20dp"
+    Button:
+        size_hint: .3 , .1
+        pos_hint: {"center_x" :.5 , "center_y":.5}
+        text: "RESTART"
+        font_size: "35dp"
+        on_press : root.parent.on_press_restart_button()
